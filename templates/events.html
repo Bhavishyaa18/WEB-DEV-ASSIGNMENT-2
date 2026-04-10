@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="title">🎟️ Upcoming Events</h2>
+
+<input type="text" id="search" onkeyup="searchEvents()" placeholder="Search events...">
+
+<div class="events">
+
+{% for event in events %}
+<div class="card">
+    <img src="{{ url_for('static', filename=event.image) }}" alt="event">
+    
+    <div class="card-content">
+        <h3>{{ event.name }}</h3>
+        <p>📅 {{ event.date }}</p>
+        <p>📍 {{ event.venue }}</p>
+        <a href="/register" class="btn">Register</a>
+    </div>
+</div>
+{% endfor %}
+
+</div>
+
+{% endblock %}

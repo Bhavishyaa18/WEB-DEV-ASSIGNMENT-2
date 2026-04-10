@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="title">⚙️ Admin Panel</h2>
+
+<form method="POST" action="/admin/add">
+    <input name="name" placeholder="Event Name" required>
+    <input name="date" placeholder="Date" required>
+    <input name="venue" placeholder="Venue" required>
+    <input name="image" placeholder="Image path (e.g. images/music.jpg)" required>
+    <button class="btn">Add Event</button>
+</form>
+
+<div class="events">
+{% for event in events %}
+<div class="card">
+    <img src="{{ url_for('static', filename=event.image) }}">
+    <div class="card-content">
+        <h3>{{ event.name }}</h3>
+        <a href="/admin/delete/{{ event.id }}" class="btn">Delete</a>
+    </div>
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}
